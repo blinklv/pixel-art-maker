@@ -1,3 +1,7 @@
+* {
+  box-sizing: content-box;
+}
+
 body {
     text-align: center;
 }
@@ -25,6 +29,7 @@ td {
 table {
     border-collapse: collapse;
     margin: 0 auto;
+    empty-cells: show;
 }
 
 tr {
@@ -33,6 +38,7 @@ tr {
 
 td {
     width: 20px;
+    height: 20px;
 }
 
 input[type=number] {
