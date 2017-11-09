@@ -6,7 +6,11 @@
 // Last Change: 2017-11-09
 
 (function() {
-  function refreshTable() {
+  function color() {
+    $(this).css('background-color', $('#colorPicker').val());
+  }
+
+  function makeGrid() {
     var table = $('#pixel_canvas');
     var [row, col] = [$('#input_width').val(), $('#input_height').val()];
 
@@ -17,8 +21,9 @@
         table.children().last().append('<td></td>');
       }
     } 
+    $('td').click(color);
   }
 
-  $('#submit').click(refreshTable);
-  refreshTable();
+  $('#submit').click(makeGrid);
+  makeGrid();
 }) ();
