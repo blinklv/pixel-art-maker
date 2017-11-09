@@ -6,22 +6,36 @@
 // Last Change: 2017-11-09
 
 (function() {
-  function color() {
-    $(this).css('background-color', $('#colorPicker').val());
-  }
 
+  /*
+   *  @description Create a new grid to replace the old grid, the size of 
+   *  the new grid depends on two input tags (input_height and input_width).
+   */
   function makeGrid() {
-    var table = $('#pixel_canvas');
-    var [row, col] = [$('#input_width').val(), $('#input_height').val()];
+    let table = document.getElementById('pixel_canvas');
+    const colorPicker = $('#colorPicker');
+    const [colNum, rowNum] = [$('#input_width').val(), $('#input_height').val()];
 
-    table.empty();
-    for (let i = 0; i < row; ++i) {
-      table.append('<tr></tr>');
-      for (let j = 0; j < col; ++j) {
-        table.children().last().append('<td></td>');
+    if (rowNum < 1 || rowNum > 48) {
+      alert("The range of Grid Height between 1 and 48");
+      return;
+    }
+
+    if (colNum < 1 || colNum > 48) {
+      alert("The range of Grid Width between 1 and 48");
+      return;
+    }
+
+    table.innerHTML = '';
+    for (let i = 0; i < rowNum; ++i) {
+      const row = table.insertRow(i);
+      for (let j = 0; j < colNum; ++j) {
+        const cell = row.insertCell(j);
+        cell.onclick = () => {
+          cell.style.backgroundColor = colorPicker.val();
+        }
       }
     } 
-    $('td').click(color);
   }
 
   $('#submit').click(makeGrid);
